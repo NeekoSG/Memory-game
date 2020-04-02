@@ -29,7 +29,7 @@ let video;
 // elle initialise le jeu
 function setup() {
   // on charge le modèle
-  classifier = ml5.imageClassifier("url-du-model-teachable-machine/model.json");
+  classifier = ml5.imageClassifier("https://teachablemachine.withgoogle.com/models/P4BFvqIlZ/");
 
   // ce code permet de récupérer la vidéo de la webcam
   video = createCapture(VIDEO);
@@ -88,6 +88,14 @@ function goDown() {
   snakeY += pixelSize;
 }
 
+function goLeft() {
+  snakeX -= pixelSize;
+}
+
+function goRight() {
+  snakeX += pixelSize;
+}
+
 // cette fonction est lancée quand le modèle identifie un mouvement
 function findMovement(error, results) {
   // en cas d'erreur, on l'affiche
@@ -138,6 +146,12 @@ function keyPressed() {
       break;
     case 40: // 40 à flèche du bas
       goDown();
+      break;
+    case 37:
+      goLeft();
+      break;
+    case 39:
+      goRight();
       break;
   }
 }
